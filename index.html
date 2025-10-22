@@ -1,0 +1,434 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Техническое задание - system-engineering-playbook</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="src/_assets/custom.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">system-engineering-playbook</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="Техническое-задание-стандарт-ieee-291482011"><a class="header" href="#Техническое-задание-стандарт-ieee-291482011">Техническое задание (стандарт IEEE 29148:2011)</a></h1>
+<h2 id="Платформа-для-нейросетевой-генерации-диаграмм"><a class="header" href="#Платформа-для-нейросетевой-генерации-диаграмм">Платформа для нейросетевой генерации диаграмм</a></h2>
+<p><strong>Статус документа:</strong> Завершен</p>
+<p><strong>Дата:</strong> 22.10.2025</p>
+<h2 id="1-Введение"><a class="header" href="#1-Введение">1. Введение</a></h2>
+<h3 id="11-Назначение"><a class="header" href="#11-Назначение">1.1 Назначение</a></h3>
+<blockquote>
+<p>Настоящий документ определяет требования к программному обеспечению «Платформа для нейросетевой генерации диаграмм». Он предназначен для использования заказчиком, менеджерами проекта, системными аналитиками, разработчиками и тестировщиками в качестве основы для проектирования, реализации, тестирования и приемки системы.</p>
+</blockquote>
+<h3 id="12-Содержание-границы"><a class="header" href="#12-Содержание-границы">1.2 Содержание (границы)</a></h3>
+<blockquote>
+<p>Документ охватывает функциональные и нефункциональные требования к веб-платформе, включая генерацию диаграмм через нейросетевые модели, интерактивное редактирование, систему оценки качества компоновки и AI-помощник. Данный докуент не описывает разработку конкретных алгоритмов машинного обучения, но формулируются требования к их интеграции и функционированию.</p>
+</blockquote>
+<h2 id="2-Обзор-продукта"><a class="header" href="#2-Обзор-продукта">2. Обзор продукта</a></h2>
+<h3 id="21-Взаимодействие-продукта"><a class="header" href="#21-Взаимодействие-продукта">2.1 Взаимодействие продукта</a></h3>
+<blockquote>
+<p>Внешние системы: платформа должна быть доступна через веб-браузер. Для хранения данных о пользователях и диаграммах должна использоваться система управления базами данных (СУБД). Для работы нейросетевых моделей должна быть предусмотрена интеграция с внешними ML-сервисами.</p>
+<p>Пользователи: Взаимодействие осуществляется через графический веб-интерфейс.</p>
+</blockquote>
+<h3 id="22-Функции-продукта"><a class="header" href="#22-Функции-продукта">2.2 Функции продукта</a></h3>
+<ul>
+<li>Генерация множества диаграмм в контексте проекта различных типов по текстовому запросу;</li>
+<li>Создание проектов для хранения различных диаграмм в одном пространстве;</li>
+<li>Редактирование диаграмм;</li>
+<li>AI-помощник, предоставляющий контекстные подсказки по улучшению диаграмм;</li>
+<li>Подсистема оценки качества компоновки диаграмм в реальном времени;</li>
+<li>Экспорт диаграмм в стандартные форматы;</li>
+<li>Интеграция с облачными хранилищами;</li>
+<li>Разграничение доступа, политики доступа;</li>
+<li>Командная работа над проектами;</li>
+<li>Аутентификация пользователей платформы;</li>
+<li>Редактирование информации об аккаунте.</li>
+</ul>
+<h3 id="23-Характеристики-пользователей"><a class="header" href="#23-Характеристики-пользователей">2.3 Характеристики пользователей</a></h3>
+<ul>
+<li>Аналитики данных и инженеры: Пользователи с техническим образованием, которым нужна быстрая визуализация данных и архитектур систем. Знакомы с основными типами диаграмм;</li>
+<li>Менеджеры и бизнес-аналитики: Пользователи с меньшей технической подготовкой, нуждающиеся в создании презентационных материалов. Ценят простоту и скорость;</li>
+<li>Системные администраторы: обеспечивают работоспособность платформы;</li>
+<li>Тестировщики: отслеживают изменения платформы и обеспечивают контроль работоспособности ее сервисов;</li>
+<li>Разработчики-программисты: исправляют возникшие с платформой проблемы и соответствующе вносят изменения в нее.</li>
+</ul>
+<h3 id="24-Ограничения"><a class="header" href="#24-Ограничения">2.4 Ограничения</a></h3>
+<ul>
+<li>Платформа должна работать в современных браузерах (Chrome, Firefox, Safari, Edge).</li>
+<li>Время генерации диаграммы не должно превышать 30 секунд для стандартных запросов.</li>
+<li>Система должна быть локализована на русский язык.</li>
+</ul>
+<h3 id="25-Термины-и-определения"><a class="header" href="#25-Термины-и-определения">2.5 Термины и определения</a></h3>
+<ul>
+<li>Нейросетевая модель (Neural Network): Вычислительная модель, основанная на структуре биологических нейронных сетей, используемая для распознавания паттернов и генерации контента;</li>
+<li>Оценка качества компоновки: Оценка эстетики, читаемости (скорости и точности прочтения диаграммы) и структурной целостности диаграммы;</li>
+<li>AI-помощник: Встроенный в редактор модуль, использующий обработку естественного языка (Natural Language Processing) для анализа действий пользователя и предоставления рекомендаций по улучшению его диаграмм.</li>
+</ul>
+<h2 id="3-Ссылки"><a class="header" href="#3-Ссылки">3. Ссылки</a></h2>
+<h3 id="31-Стандарты-и-шаблоны-для-ТЗ-на-разработку-ПО"><a class="header" href="#31-Стандарты-и-шаблоны-для-ТЗ-на-разработку-ПО">3.1 Стандарты и шаблоны для <a href="https://habr.com/ru/articles/328822/">ТЗ</a> на разработку ПО</a></h3>
+<h2 id="4-Детальные-требования"><a class="header" href="#4-Детальные-требования">4. Детальные требования</a></h2>
+<h3 id="41-Требования-к-внешним-интерфейсам"><a class="header" href="#41-Требования-к-внешним-интерфейсам">4.1 Требования к внешним интерфейсам</a></h3>
+<blockquote>
+<p>Пользовательский интерфейс: должен быть реализован как адаптивный веб-интерфейс, обеспечивающий корректное отображение как на мобильных устройствах, так и на ПК.</p>
+<p>Программный интерфейс: Система должна предоставлять RESTful API для интеграции с внешними системами.</p>
+<p>Интеграция с внешними системами: Платформа должна предоставлять возможность экспорта диаграмм в облачные хранилища.</p>
+</blockquote>
+<h3 id="42-Функции-продукта"><a class="header" href="#42-Функции-продукта">4.2 Функции продукта</a></h3>
+<ul>
+<li>
+<p><strong>FUNC-001: Генерация диаграмм по текстовому описанию</strong></p>
+<ul>
+<li>Описание: Система должна предоставлять пользователю интерфейс для ввода текстового запроса на естественном языке (русском) с последующей генерацией диаграммы. Модуль должен провести анализ введённого пользователем текста, подготовить дополнительные вопросы и уточнения запроса, а уже потом заняться генерацией;</li>
+<li>Требования: Пользователь должен иметь возможность выбрать тип генерируемой диаграммы (блок-схема, UML, архитектурная схема) перед генерацией.</li>
+</ul>
+</li>
+<li>
+<p><strong>FUNC-002: Интерактивный редактор диаграмм</strong></p>
+<ul>
+<li>Описание: Платформа должна предоставлять визуальный редактор для ручного создания и изменения сгенерированных или новых диаграмм;</li>
+<li>Требования: Редактор должен поддерживать базовые операции: добавление/удаление элементов, изменение связей, перемещение элементов, группировка. Редактор должен содержать все элементы, описанные соответствующими стандартами распространённых диаграмм: стандартом UML, стандартом BPMN и т.д.</li>
+</ul>
+</li>
+<li>
+<p><strong>FUNC-003: Работа AI-помощника</strong></p>
+<ul>
+<li>Описание В редакторе должен быть доступен AI-помощник, анализирующий текущую диаграмму и действия пользователя с целью выдачи ему рекомендаций для улучшения его работы;</li>
+<li>Требования: Помощник должен уметь предлагать альтернативные варианты компоновки, исправлять структурные ошибки и давать текстовые пояснения по запросу.</li>
+</ul>
+</li>
+<li>
+<p><strong>FUNC-004: Оценка качества компоновки в реальном времени</strong></p>
+<ul>
+<li>Описание: Подсистема должна непрерывно в фоновом режиме оценивать качество текущей диаграммы в редакторе;</li>
+<li>Требования: Система должна визуально информировать пользователя о низком качестве компоновки. Система должна оценивать диаграмму по следующим метрикам для выявления «антипаттернов» компоновки: пересечение связей, изгибы связей, перекрытия элементов, плотность диаграммы (соотношение занятой и свободной площади), читаемость меток (оптимальное направление и положение). Данные оценки должны использоваться для выбора лучшего варианта при генерации и для дообучения моделей.</li>
+</ul>
+</li>
+<li>
+<p><strong>FUNC-005: Интерактивная система обучения новых пользователей платформы</strong></p>
+<ul>
+<li>Описание: Система должна последовательно вести новых пользователей по возможностям платформы и обучать их работу с ее функциями;</li>
+<li>Требования: Данная система должна занять не более 15 минут на обучение нового пользователя. Обучение должно быть последовательным и понятным. У пользователя должна быть возможность пропустить обучение и сразу перейти к работе с платформой.</li>
+</ul>
+</li>
+<li>
+<p><strong>FUNC-006: Создание проекта на платформе</strong></p>
+<ul>
+<li>Описание: Система должна иметь возможность создания проекта для хранения и работы с несколькими диаграммами в рамках одного пространства;</li>
+<li>Требования: Проект должен иметь несколько режимов доступа:
+<ul>
+<li>Приватный: доступ только у владельца проекта;</li>
+<li>Командный: владелец пространства имеет возможность добавлять в свой проект зарегистрированных пользователей по их идентификатору и редактировать уровень взаимодействия с ним;</li>
+<li>По ссылке: Владелец проекта может создать ссылку для приглашения пользователей в проект. Если пользователь не авторизован, то он перенаправляется на страницу авторизации. После успешного входа в систему, человек попадает в пространство проекта и имеет доступ только для чтения. Для получения нового уровня взаимодействия с проектом его владельцу нужно будет изменить настройки данного пользователя;</li>
+<li>Публичный: Владелец может предоставить доступ к проекту для всех пользователей платформы. Уровень взаимодействия на просмотр и редактирование также определяет на этапе выбора режима проекта.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>FUNC-007: Экспорт диаграмм в стандартные форматы</strong></p>
+<ul>
+<li>Описание: Диаграмму можно скачать в удобном для пользователя формате;</li>
+<li>Требования: Экспорт диаграмм должен быть доступен для форматов PNG и SVG.</li>
+</ul>
+</li>
+<li>
+<p><strong>FUNC-008: Разграничение доступа</strong></p>
+<ul>
+<li>Описание: для работы с диаграммами и проектами у пользователя должна быть возможность изменять уровни доступа;</li>
+<li>Требования: уровни доступа должны быть разграничены следующим образом:
+<ul>
+<li>Приватный: доступ только у владельца;</li>
+<li>Режим чтения: доступ только для чтения диаграмм;</li>
+<li>Режим редактирования: доступ для чтения и редактирования диаграмм.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>FUNC-009: Аутентификация</strong></p>
+<ul>
+<li>Описание: Функция для идентификации пользователя в системе;</li>
+<li>Требования: Аутентификация должна происходить через запрос логина и пароля пользователя. При регистрации нового пользователя необходимо запрашивать у него email для отправки ссылки с подтверждением на регистрацию в сервисе и перевода его на страницу регистрации.</li>
+</ul>
+</li>
+<li>
+<p><strong>FUNC-010: Редактирование личных данных пользователя</strong></p>
+<ul>
+<li>Описание: Личный кабинет пользователя с его данными, которые он может редактировать;</li>
+<li>Требования: кабинет должен содержать основную информацию о пользователе, то есть его логин, email и списке проектов. На данной странице должна быть возможность изменить логин, email и пароль.</li>
+</ul>
+</li>
+</ul>
+<h3 id="43-Требования-к-юзабилити"><a class="header" href="#43-Требования-к-юзабилити">4.3 Требования к юзабилити</a></h3>
+<blockquote>
+<p>Время на освоение базового функционала (генерация и простое редактирование) для нового пользователя не должно превышать 15 минут.</p>
+<p>Для обучения нового пользователя платформы должна использоваться интерактивная система для успешной работы с ней, рассчитанной на не более чем 15 минут.</p>
+<p>Интерфейс редактора должен быть интуитивно понятен; По итогам юзабилити-тестирования процент успешно справившихся пользователей с базовым набором операций не должен быть ниже 80%.</p>
+</blockquote>
+<h3 id="44-Требования-к-производительности"><a class="header" href="#44-Требования-к-производительности">4.4 Требования к производительности</a></h3>
+<blockquote>
+<p>Время отклика UI на действия пользователя (клик, перемещение элемента) не должно превышать 300 мс.</p>
+<p>Время генерации диаграммы по запросу средней сложности (до 50 элементов) не должно превышать 1 минуты в 95% случаев.</p>
+</blockquote>
+<h3 id="45-Требования-к-логической-структуре-БД"><a class="header" href="#45-Требования-к-логической-структуре-БД">4.5 Требования к логической структуре БД</a></h3>
+<blockquote>
+<p>Сущность «Пользователь» должна хранить идентификатор, email, хэш пароля, токен сессии.</p>
+<p>Сущность «Диаграмма» должна хранить идентификатор, связь с пользователем-владельцем, историю изменений, метаданные о качестве компоновки, исходный текст запроса на генерацию.</p>
+<p>Сущность «Диаграмма-пользователь» должна хранить связи диаграмм и соответствующих им пользователей.</p>
+<p>Сущность «Проект» должна хранить id всех связанных с ней диаграмм и пользователей, список id пользователей с доступом к проекту или конкретным диаграммам проекта.</p>
+</blockquote>
+<h3 id="46-Ограничения-проектирования"><a class="header" href="#46-Ограничения-проектирования">4.6 Ограничения проектирования</a></h3>
+<blockquote>
+<p>Фронтенд-часть приложения должна быть реализована с использованием фреймворка React версии 18 и выше.</p>
+<p>Для визуализации диаграмм в редакторе должна использоваться библиотека, совместимая с форматом DiagramGPT или аналогичным.</p>
+</blockquote>
+<h3 id="47-Системные-свойства-ПО"><a class="header" href="#47-Системные-свойства-ПО">4.7 Системные свойства ПО</a></h3>
+<ul>
+<li>Надежность: Доступность системы (uptime) должна составлять не менее 99% в течение месяца;</li>
+<li>Безопасность: Все пароли должны храниться в хэшированном виде с использованием стойких алгоритмов (например, bcrypt). Доступ к диаграммам должен быть разграничен (приватные/доступ по ссылке).</li>
+</ul>
+<h3 id="48-Дополнительные-требования"><a class="header" href="#48-Дополнительные-требования">4.8 Дополнительные требования</a></h3>
+<blockquote>
+<p>Дополнительные требования отсутствуют.</p>
+</blockquote>
+<h2 id="5-Тестирование-и-проверка"><a class="header" href="#5-Тестирование-и-проверка">5. Тестирование и проверка</a></h2>
+<p><strong>Набор приемочных тестов:</strong></p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Идентификатор требования</th><th style="text-align: left">Критерий приемки / Описание теста</th></tr></thead><tbody>
+<tr><td style="text-align: left">FUNC-001</td><td style="text-align: left">По запросу «Сгенерируй блок-схему процесса входа в систему» система создает корректную блок-схему</td></tr>
+<tr><td style="text-align: left">FUNC-002</td><td style="text-align: left">Пользователь может перетащить один элемент диаграммы, и связь с другими элементами автоматически обновится</td></tr>
+<tr><td style="text-align: left">FUNC-003</td><td style="text-align: left">При создании цикла в блок-схеме (или другой иной проблемы) AI-помощник предлагает варианты оптимизации и/или исправления данного варианта диаграммы</td></tr>
+<tr><td style="text-align: left">FUNC-004</td><td style="text-align: left">При намеренном создании запутанной диаграммы система показывает предупреждение о ее низком качестве.</td></tr>
+<tr><td style="text-align: left">FUNC-005</td><td style="text-align: left">При первичном входе на платформу система обучения должна последовательно выдавать обучающий материал для нового пользователя. После прохождения полного цикла обучения система должна прекратить свою работу. При желании пользователя пропустить обучение система должна прекратить свою работу.</td></tr>
+<tr><td style="text-align: left">FUNC-006</td><td style="text-align: left">При тестировании создании проекта в системе должны отрабатывать создание, определение уровня доступа и все его режимы</td></tr>
+<tr><td style="text-align: left">FUNC-007</td><td style="text-align: left">При экспорте диаграммы пользователю должны выдаваться для скачивания все описанные форматы</td></tr>
+<tr><td style="text-align: left">FUNC-008</td><td style="text-align: left">При работе с диаграммами должны отрабатывать все описанные уровни доступа для защиты данных пользователей</td></tr>
+<tr><td style="text-align: left">FUNC-009</td><td style="text-align: left">Функция аутентификация стабильно принимает и обрабатывает поступающие от пользователей данные для идентификации их в системе</td></tr>
+<tr><td style="text-align: left">FUNC-010</td><td style="text-align: left">При загрузке личного кабинета подтягиваются все личные данные авторизованного пользователя. При изменении пользователем данных они должны быть отправлены на сервер и сохранены им.</td></tr>
+<tr><td style="text-align: left">PERF-001</td><td style="text-align: left">Нагрузочное тестирование подтверждает, что 95% запросов на генерацию обрабатываются не медленнее 30 секунд</td></tr>
+<tr><td style="text-align: left">USAB-001</td><td style="text-align: left">В ходе юзабилити-теста 80% пользователей успешно генерируют, редактируют и сохраняют диаграмму без инструкций.</td></tr>
+</tbody></table>
+</div>
+<h2 id="6-Приложения"><a class="header" href="#6-Приложения">6. Приложения</a></h2>
+<h3 id="61-Предположения-и-зависимости"><a class="header" href="#61-Предположения-и-зависимости">6.1 Предположения и зависимости</a></h3>
+<blockquote>
+<p>Предполагается, что пользователи имеют базовые навыки работы с веб-приложениями.</p>
+<p>Разработка зависит от доступности и производительности внешних ML-сервисов для генерации и анализа.</p>
+</blockquote>
+<h3 id="62-Аббревиатуры-и-сокращений"><a class="header" href="#62-Аббревиатуры-и-сокращений">6.2 Аббревиатуры и сокращений</a></h3>
+<ul>
+<li>API -- Application Programming Interface.</li>
+<li>UI -- User Interface.</li>
+<li>ML -- Machine Learning.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+                            <a rel="next prefetch" href="UML_FUNC006.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+                    <a rel="next prefetch" href="UML_FUNC006.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>
