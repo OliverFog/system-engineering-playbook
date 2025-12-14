@@ -1,5 +1,9 @@
 # IDEF3 диаграммы
 
+### [FUNC001](./TechnicalSpecification.md)
+
+
+
 ### [FUNC006](./TechnicalSpecification.md)
 
 @drawio{https://github.com/OliverFog/system-engineering-playbook/blob/main/src/diagrams/IDEF3/IDEF3_FUNC006.drawio}
