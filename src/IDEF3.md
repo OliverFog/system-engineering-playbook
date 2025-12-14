@@ -2,11 +2,11 @@
 
 ### [FUNC001](./TechnicalSpecification.md)
 
-
+@drawio{https://github.com/OliverFog/system-engineering-playbook/blob/4ffa8d7a97eb91721d053bb3b5205f5143f76c1a/src/diagrams/IDEF3/IDEF3_FUNC001.drawio}
 
 ### [FUNC006](./TechnicalSpecification.md)
 
-@drawio{https://github.com/OliverFog/system-engineering-playbook/blob/main/src/diagrams/IDEF3/IDEF3_FUNC006.drawio}
+@drawio{https://github.com/OliverFog/system-engineering-playbook/blob/4ffa8d7a97eb91721d053bb3b5205f5143f76c1a/src/diagrams/IDEF3/IDEF3_FUNC006.drawio}
 
 ### [FUNC009](./TechnicalSpecification.md)
 
