@@ -6,5 +6,5 @@
 
 ### Диаграмма активностей
 
-
+@drawio{https://github.com/OliverFog/system-engineering-playbook/blob/707d570f875ccf2d18cad77c5997ffbc17fb6c33/src/diagrams/UML/FUNC006/Activity_FUNC006.drawio}
 
