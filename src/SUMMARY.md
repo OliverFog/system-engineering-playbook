@@ -9,3 +9,4 @@
 - [IDEF3 диаграммы](./IDEF3.md)
 - [BPMN диаграммы](./BPMN.md)
 - [ADR](./ADR.md)
+- [Статья](./Paper.md)
